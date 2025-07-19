@@ -1,0 +1,358 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: calc(14px + 0.3vw);
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    color: #5a4a42;
+    background-color: #f9f5f0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+}
+
+/* Header Section */
+header {
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f9f5f0"/><path d="M30,30 Q50,20 70,30 T90,50 Q80,70 70,70 T50,90 Q20,80 30,30" fill="%23f0e6d9" opacity="0.3"/></svg>');
+    position: relative;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    background: white;
+    border-radius: 150% 0 150% 0;
+    opacity: 0.7;
+    animation: float linear infinite;
+    z-index: 0;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: #8b6b5e;
+}
+
+.subtext {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    font-style: italic;
+    color: #8b6b5e;
+    margin-bottom: 2rem;
+    max-width: 90%;
+}
+
+.scroll-prompt {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    font-size: 1.5rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-20px) translateX(-50%); }
+    60% { transform: translateY(-10px) translateX(-50%); }
+}
+
+/* Book Garden Section */
+#book-garden {
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, #f9f5f0, #e8f5e9);
+    text-align: center;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 2rem;
+    color: #6d8b74;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.book-card {
+    width: 100%;
+    aspect-ratio: 3/4;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    margin: 0 auto;
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.book-front, .book-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.book-front {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="280" viewBox="0 0 200 280"><rect width="200" height="280" fill="%23f5e9dc" rx="5" ry="5"/><rect x="10" y="10" width="180" height="260" fill="%23f9f5f0" rx="3" ry="3"/><path d="M20,20 L180,20 M20,40 L180,40 M20,60 L180,60 M20,80 L180,80 M20,100 L180,100 M20,120 L180,120 M20,140 L180,140 M20,160 L180,160 M20,180 L180,180 M20,200 L180,200 M20,220 L180,220 M20,240 L180,240 M20,260 L180,260" stroke="%238b6b5e" stroke-width="0.5" stroke-dasharray="2,2"/></svg>');
+    background-size: cover;
+    transform: rotateY(0deg);
+}
+
+.book-back {
+    background: #f9f5f0;
+    transform: rotateY(180deg);
+    display: none;
+    overflow: hidden;
+}
+
+.book-card.active .book {
+    transform: rotateY(180deg);
+}
+
+.book-card.active .book-back {
+    display: flex;
+}
+
+.tulip {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+}
+
+.book-title {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    text-align: center;
+    color: #8b6b5e;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    display: none;
+}
+
+.book-card.active .photo {
+    display: block;
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.book-back:hover .photo-caption {
+    opacity: 1;
+}
+
+/* Storybook Section */
+#storybook {
+    padding: 4rem 1rem;
+    background: #f9f5f0;
+}
+
+.chapter {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: clamp(1.5rem, 5vw, 2rem);
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chapter h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-bottom: 1.5rem;
+    color: #6d8b74;
+    text-align: center;
+}
+
+.chapter img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 1rem auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.chapter p {
+    margin-bottom: 1rem;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    line-height: 1.8;
+    color: #5a4a42;
+}
+
+/* Final Letter Section */
+#final-letter {
+    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, #f9f5f0, #e8d5c5);
+    text-align: center;
+}
+
+.quote {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.letter-container {
+    max-width: 600px;
+    margin: 2rem auto; /* Changed from 0 auto */
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 1; /* Changed from 0 */
+    transform: none; /* Changed from translateY(50px) */
+    visibility: visible; /* Added */
+}
+
+.letter-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.letter-content {
+    padding: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #5a4a42;
+}
+
+.letter-content p {
+    margin-bottom: 1.5rem;
+}
+
+.unfold-button {
+    background: #6d8b74;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: all 0.3s;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.unfold-button:hover {
+    background: #8b6b5e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Cursor Effect */
+.cursor-tulip {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Sticky Bookmark */
+.sticky-bookmark {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #8b6b5e;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 100;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.sticky-bookmark.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .books-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .books-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (hover: none) {
+    .book-card:hover .tulip {
+        transform: none;
+    }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please Accept My Apology</title>
+    <style>
+        body {
+            background-color: #fff9fb;
+            font-family: 'Dancing Script', cursive;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            
+            background-size: 200px;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .apology-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px;
+            border: 1px solid #ffebee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apology-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        }
+
+        h1 {
+            color: #d23669;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .accept-button {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Dancing Script', cursive;
+            box-shadow: 0 5px 15px rgba(255,154,158,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accept-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,154,158,0.6);
+        }
+
+        .accept-button:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            top: 0;
+            left: -100%;
+            transition: all 0.4s;
+        }
+
+        .accept-button:hover:after {
+            left: 100%;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="apology-card">
+        <h1>Just Sorry...</h1>
+        <p>Please accept my heartfelt apology</p>
+        <button class="accept-button" onclick="window.location.href='index1.html'">Accept My Apology</button>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const colors = ['#ff9a9e', '#fad0c4', '#ffd1ff', '#a18cd1'];
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '🌷';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 6 + 3) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                document.body.appendChild(heart);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', createHearts);
+    </script>
+</body>
+</html>
